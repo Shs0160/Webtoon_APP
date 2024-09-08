@@ -14,57 +14,46 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
 
-  //int counter = 0;
-  List<int> numbers = [];
-
-  void onClick() {
-    //state 위젯에게 새 데이터가 있다고 알려줌
-    setState(() {
-      //counter = counter + 1;
-      numbers.add(numbers.length);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: const Color(0xFFF4EDDB),
+      theme: ThemeData(
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(
+            color: Colors.red,
+          ),
+        ),
+      ),
+      home: const Scaffold(
+        backgroundColor: Color(0xFFF4EDDB),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'Click Count',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              // Text(
-              //   '$counter',
-              //   style: const TextStyle(
-              //     fontSize: 30,
-              //     fontWeight: FontWeight.w400,
-              //   ),
-              // ),
-              for (var n in numbers)
-                Text(
-                  '$n',
-                  style: const TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              IconButton(
-                iconSize: 40,
-                onPressed: onClick,
-                icon: const Icon(Icons.add_box_rounded),
-              ),
+              MyLargeTitle(),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class MyLargeTitle extends StatelessWidget {
+  const MyLargeTitle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    //context는 Text 이전에 있는 모든 상위 요소들에 대한 정보
+    return Text(
+      'My Large Title',
+      style: TextStyle(
+        fontSize: 30,
+        fontWeight: FontWeight.w400,
+        color: Theme.of(context).textTheme.titleLarge?.color,
       ),
     );
   }
