@@ -42,8 +42,8 @@ class _MyAppState extends State<MyApp> {
 
 class MyLargeTitle extends StatelessWidget {
   const MyLargeTitle({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
